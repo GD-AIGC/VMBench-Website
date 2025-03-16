@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="description"
+        content="VMBench: A Benchmark for Perception-Aligned Video Motion Generation">
+  <meta name="keywords" content="Evaluation, Benchmark, Prompts, Dataset, Video Generation, Text-to-Video, Stable Diffusion, AIGC, Image Generation, AMAP">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VMBench: A Benchmark for Perception-Aligned Video Motion Generation</title>
+
+<!--   Global site tag (gtag.js) - Google Analytics-->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5ZVQZ7NHC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-Y5ZVQZ7NHC');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+  <link rel="stylesheet" href="assets/vmbench/css/bulma.min.css">
+  <link rel="stylesheet" href="assets/vmbench/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="assets/vmbench/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="assets/vmbench/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="assets/vmbench/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="assets/vmbench/js/fontawesome.all.min.js"></script>
+  <script src="assets/vmbench/js/bulma-carousel.min.js"></script>
+  <script src="assets/vmbench/js/bulma-slider.min.js"></script>
+  <script src="assets/vmbench/js/index.js"></script>
+</head>
+<body>
+
+<!-- title -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+<!--          <h1 class="title is-1 publication-title"><span style="color:#B9770E; font-weight: bold; font-style: italic">VMBench</span> : A Benchmark for Perception-Aligned Video Motion Generation</h1>-->
+            <h1 class="title is-1 publication-title">VMBench: A Benchmark for Perception-Aligned Video Motion Generation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+
+              <span class="author-block">
+                  Xinran Ling<sup>1*</sup>,
+              </span>
+              <span class="author-block">
+                  Chen Zhu<sup>1*</sup>,
+              </span>
+              <span class="author-block">
+                  Meiqi Wu<sup>1,3*</sup>,
+              </span>
+              <span class="author-block">
+                Hangyu Li<sup>1</sup>,
+              </span>
+              <span class="author-block">
+                  Xiaokun Feng<sup>1,2</sup>,
+              </span>
+                <br>
+              <span class="author-block">
+                Cundian Yang<sup>1</sup>,
+              </span>
+              <span class="author-block">
+                Aiming Hao<sup>1</sup>,
+              </span>
+              <span class="author-block">
+                Jiashu Zhu<sup>1</sup>,
+              </span>
+              <span class="author-block">
+               Jiahong Wu<sup>1&#8224</sup>,
+              </span>
+              <span class="author-block">
+               Xiangxiang Chu<sup>1</sup>
+              </span>
+              <br>
+            </span>
+          </div>
+          <!-- <br> -->
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">(* equal contributions, &#8224 corresponding authors) </span>
+        </div>
+
+        <div class="is-size-5 publication-authors">
+          <span class="author-block">
+            <sup>1</sup>
+              AMAP, Alibaba Group &nbsp;&nbsp;
+            <sup>2</sup>
+              CRISE, Institute of Automation, Chinese Academy of Sciences &nbsp;&nbsp;
+            <br>
+            <sup>3</sup>
+              School of Computer Science and Technology, University of Chinese Academy of Sciences &nbsp;&nbsp;
+          </span>
+        </div>
+
+        <div class="column has-text-centered">
+          <div class="publication-links">
+            
+            <span class="link-block">
+              <a href="https://arxiv.org/abs/2503.10076" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="ai ai-arxiv"></i>
+                </span>
+                <span>Paper(VMBench)</span>
+              </a>
+            </span>
+            <!-- Code Link. -->
+            <span class="link-block">
+              <a href="https://github.com/GD-AIGC/VMBench" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="fab fa-github"></i>
+                </span>
+                <span>GitHub</span>
+              </a>
+            </span>
+            <!-- Huggingface Demo Link. -->
+            <span class="link-block">
+              <a href="https://huggingface.co/GD-ML/VMBench" target="_blank"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <img src="assets/vmbench/hf-logo.svg" style="display:block;width:330px;height:240px" />
+                </span>
+                <span>Huggingface</span>
+              </a>
+            </span>
+          </div>
+
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- teaser -->
+<section class="hero teaser">
+  <div class="container is-max-desktop" style="width: 50%; max-width: none;">
+      <div class="hero-body">
+            <img src="assets/vmbench/images/intro.jpg" style="width:100%; margin-bottom:10px" alt="Teaser."/>
+      <p style="margin-top: 0;">
+          <b>Overview of VMBench.</b> Our benchmark encompasses six principal categories of motion patterns, with each prompt constructed as a comprehensive motion structured around three core components: subject, place, and acion. We propose a novel multi-dimensional video motion evaluation comprising five human-centric quality metrics derived from perceptual preferences. Utilizing videos generated by popular T2V models, we conduct systematic human evaluations to validate the effectiveness of our metrics in capturing human perceptual preferences.      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Abstract. -->
+<section>
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered" style="margin-top: 10px; margin-bottom: 0px;">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 is-centered">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Video generation has advanced rapidly, improving evaluation methods, yet assessing video's motion remains a major challenge. Specifically, there are two key issues: 1) current motion metrics do not fully align with human perceptions; 2) the existing motion prompts are limited. Based on these findings, we introduce <b>VMBench</b>---a comprehensive Video Motion Benchmark that has perception-aligned motion metrics and features the most diverse types of motion. VMBench has several appealing properties: (1) <b>Perception-Driven Motion Evaluation Metrics</b>, we identify five dimensions based on human perception in motion video assessment and develop fine-grained evaluation metrics, providing deeper insights into models' strengths and weaknesses in motion quality. (2) <b>Meta-Guided Motion Prompt Generation</b>, a structured method that extracts meta-information, generates diverse motion prompts with LLMs, and refines them through human-AI validation, resulting in a multi-level prompt library covering six key dynamic scene dimensions. (3) <b>Human-Aligned Validation Mechanism</b>, we provide human preference annotations to validate our benchmarks, with our metrics achieving an average 35.3% improvement in Spearman’s correlation over baseline methods. This is the first time that the quality of motion in videos has been evaluated from the perspective of human perception alignment.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PMM -->
+<section class="section" style="margin-top:-10px; margin-bottom:-100px;">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <div class="section-title">
+          <h2 class="title is-3 is-centered">Perception-Driven Motion Evaluation Metrics (PMM)</h2>
+        </div>
+        <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <div class="publication-img">
+              <img id="architecture" src="assets/vmbench/images/eval_pipeline.jpg" style="width:100%; margin-top:10px;margin-bottom:10px;"/>
+            </div>
+          </div>
+        </div>
+        <p style="margin-top: 0;">
+            Framework of our Perception-Driven Motion Metrics (PMM). PMM comprises multiple evaluation metrics: Commonsense Adherence Score (CAS), Motion Smoothness Score (MSS), Object Integrity Score (OIS), Perceptible Amplitude
+            Score (PAS), and Temporal Coherence Score (TCS). (a-e): Computational flowcharts for each metric. The scores produced by
+            PMM show variation trends consistent with human assessments, indicating strong alignment with human perception.
+        </p>
+    </div>
+  </div>
+</section>
+
+<!-- Perception Flow -->
+<section class="section" style="margin-top:-50px; margin-bottom:-100px;">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <div class="section-title">
+          <h2 class="title is-3 is-centered">Diagram of Human Perception Flow</h2>
+        </div>
+        <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <div class="publication-img">
+              <img id="architecture" src="assets/vmbench/images/metric_pipeline.jpg" style="width:100%; margin-top:10px;margin-bottom:10px;"/>
+            </div>
+          </div>
+        </div>
+        <p style="margin-top: 0;">
+            Our metrics framework for evaluating video motion, which is inspired by the mechanisms of human perception of
+            motion in videos. (a) Human perception of motion in videos primarily encompasses two dimensions: Comprehensive Analysis
+            of Motion and Capture of Motion Details. (b) Our proposed metrics framework for evaluating video motion. Specifically,
+            the MSS and CAS correspond to the human process of Comprehensive Analysis of Motion, while the OIS, PAS, and TCS
+            correspond to the capture of motion details.
+        </p>
+    </div>
+  </div>
+</section>
+
+<!-- MMPG -->
+<section class="section" style="margin-top:-50px; margin-bottom:-100px;">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <div class="section-title">
+          <h2 class="title is-3 is-centered">Meta-Guided Motion Prompt Generation (MMPG)</h2>
+        </div>
+        <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <div class="publication-img">
+              <img id="architecture" src="assets/vmbench/images/prompt_pipeline.jpg" style="width:100%; margin-top:10px;margin-bottom:10px;"/>
+            </div>
+          </div>
+        </div>
+        <p style="margin-top: 0;">
+            Framework of our Meta-Guided Motion Prompt Generation (MMPG). MMPG consists of three stages: (a) Metainformation Extraction: Extracting Subjects, Places, and Actions from datasets such as VidProm [30], Didemo [35], MSRVTT [34], WebVid [33], Place365 [31], and Kinect-700 [32]. (b) Self-Refining Prompt Generation: Generating and iteratively refining prompts based on the extracted information. (c) Human-LLM Joint Validation: Validating the prompts through
+            a collaborative process between humans and DeepSeek-R1 to ensure their rationality
+        </p>
+    </div>
+  </div>
+</section>
+
+<!-- Statistics -->
+<section class="section" style="margin-top:-50px; margin-bottom:-100px;">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <div class="section-title">
+          <h2 class="title is-3 is-centered">VMBench Meta-Guided Motion Prompt Statistics</h2>
+        </div>
+        <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <div class="publication-img">
+              <img id="architecture" src="assets/vmbench/images/statistic.jpg" style="width:100%; margin-top:10px;margin-bottom:10px;"/>
+            </div>
+          </div>
+        </div>
+        <p style="margin-top: 0;">
+            Statistical analysis of motion prompts in VMBench. (a-h): Multi-perspective statistical analysis of prompts in
+            VMBench. These analyses demonstrate VMBench’s comprehensive evaluation scope, encompassing motion dynamics, information diversity, and real-world commonsense adherence.
+        </p>
+    </div>
+  </div>
+</section>
+
+<!-- Generation Results -->
+<section class="section" style="margin-top:-50px; margin-bottom:-100px;">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <div class="section-title">
+          <h2 class="title is-3 is-centered">VMBench Generation Results of Open-Source Models</h2>
+        </div>
+        <div class="section-title">
+            <h2 class="subtitle has-text-centered">Prompt: A tourist joyfully splashes water in an outdoor swimming pool, their arms and legs moving energetically as they playfully splash around.</h2>
+        </div>
+        <div id="results-carousel-face" class="carousel results-carousel">
+            <div class="item item-puppet">
+              <div class="carousel-content">
+                    <video id="dimensions" autoplay="" muted="" loop="" playsinline="" width="100%">
+                    <source src="assets/vmbench/videos/cogvideo-1.mp4" type="video/mp4">
+                  </video>
+              </div>
+            </div>
+            <div class="item item-puppet">
+              <div class="carousel-content">
+                    <video id="dimensions" autoplay="" muted="" loop="" playsinline="" width="100%">
+                    <source src="assets/vmbench/videos/hunyuan-1.mp4" type="video/mp4">
+                  </video>
+              </div>
+            </div>
+            <div class="item item-puppet">
+              <div class="carousel-content">
+                    <video id="dimensions" autoplay="" muted="" loop="" playsinline="" width="100%">
+                    <source src="assets/vmbench/videos/mochi-1.mp4" type="video/mp4">
+                  </video>
+              </div>
+            </div>
+            <div class="item item-puppet">
+              <div class="carousel-content">
+                    <video id="dimensions" autoplay="" muted="" loop="" playsinline="" width="100%">
+                    <source src="assets/vmbench/videos/opensora-1.mp4" type="video/mp4">
+                  </video>
+              </div>
+            </div>
+            <div class="item item-puppet">
+              <div class="carousel-content">
+                    <video id="dimensions" autoplay="" muted="" loop="" playsinline="" width="100%">
+                    <source src="assets/vmbench/videos/opensora-plan-1.mp4" type="video/mp4">
+                  </video>
+              </div>
+            </div>
+            <div class="item item-puppet">
+              <div class="carousel-content">
+                    <video id="dimensions" autoplay="" muted="" loop="" playsinline="" width="100%">
+                    <source src="assets/vmbench/videos/wan-1.mp4" type="video/mp4">
+                  </video>
+              </div>
+            </div>
+        </div>
+        <div class="section-title">
+            <h2 class="subtitle has-text-centered">Prompt: Three books are thrown into the air, their pages fluttering as they soar over the soccer field, landing in a scattered pattern.</h2>
+        </div>
+        <div id="results-carousel-face" class="carousel results-carousel">
+            <div class="item item-puppet">
+              <div class="carousel-content">
+                    <video id="dimensions" autoplay="" muted="" loop="" playsinline="" width="100%">
+                    <source src="assets/vmbench/videos/cogvideo-2.mp4" type="video/mp4">
+                  </video>
+              </div>
+            </div>
+            <div class="item item-puppet">
+              <div class="carousel-content">
+                    <video id="dimensions" autoplay="" muted="" loop="" playsinline="" width="100%">
+                    <source src="assets/vmbench/videos/hunyuan-2.mp4" type="video/mp4">
+                  </video>
+              </div>
+            </div>
+            <div class="item item-puppet">
+              <div class="carousel-content">
+                    <video id="dimensions" autoplay="" muted="" loop="" playsinline="" width="100%">
+                    <source src="assets/vmbench/videos/mochi-2.mp4" type="video/mp4">
+                  </video>
+              </div>
+            </div>
+            <div class="item item-puppet">
+              <div class="carousel-content">
+                    <video id="dimensions" autoplay="" muted="" loop="" playsinline="" width="100%">
+                    <source src="assets/vmbench/videos/opensora-2.mp4" type="video/mp4">
+                  </video>
+              </div>
+            </div>
+            <div class="item item-puppet">
+              <div class="carousel-content">
+                    <video id="dimensions" autoplay="" muted="" loop="" playsinline="" width="100%">
+                    <source src="assets/vmbench/videos/opensora-plan-2.mp4" type="video/mp4">
+                  </video>
+              </div>
+            </div>
+            <div class="item item-puppet">
+              <div class="carousel-content">
+                    <video id="dimensions" autoplay="" muted="" loop="" playsinline="" width="100%">
+                    <source src="assets/vmbench/videos/wan-2.mp4" type="video/mp4">
+                  </video>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- Evaluation Results -->
+<section class="section" style="margin-top:-50px; margin-bottom:-50px;">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <div class="section-title">
+          <h2 class="title is-3 is-centered">VMBench Evaluation Results of Video Generative Models</h2>
+        </div>
+        <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <div class="publication-img">
+              <img id="architecture" src="assets/vmbench/images/eval_result.png" style="width:600px; margin-top:10px;margin-bottom:10px;"/>
+            </div>
+          </div>
+        </div>
+        <p style="margin-top: 0;">
+          We visualize the evaluation results of the 6 most recent video generation models across Perception-Driven Motion Evaluation Metrics (PMM) dimensions.
+        </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- BibTeX -->
+<section class="hero is-light is-small" id="BibTeX" >
+  <div class="container is-max-desktop content" style="margin-top: 40px; margin-bottom: 20px;">
+    <h2 class="title">BibTeX</h2>
+    <p>If you find our work useful, please consider citing our paper:</p>
+    <pre><code>@misc{ling2025vmbenchbenchmarkperceptionalignedvideo,
+      title={VMBench: A Benchmark for Perception-Aligned Video Motion Generation},
+      author={Xinrang Ling and Chen Zhu and Meiqi Wu and Hangyu Li and Xiaokun Feng and Cundian Yang and Aiming Hao and Jiashu Zhu and Jiahong Wu and Xiangxiang Chu},
+      year={2025},
+      eprint={2503.10076},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2503.10076},
+}</code></pre>
+  </div>
+</section>
+
+
+
+
+<!-- footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://arxiv.org/abs/2503.10076">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/GD-AIGC/VMBench" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website source code based on the <a href="https://nerfies.github.io/"> Nerfies</a> project page. If you want to reuse their <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a>, please credit them appropriately.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+
+
